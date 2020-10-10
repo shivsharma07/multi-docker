@@ -22,3 +22,15 @@ after_success:
   - docker push shivsharma07/multi-nginx
   - docker push shivsharma07/multi-server
   - docker push shivsharma07/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-829508431995"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
